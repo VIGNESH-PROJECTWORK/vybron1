@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Linkedin, Instagram } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const Footer = () => {
