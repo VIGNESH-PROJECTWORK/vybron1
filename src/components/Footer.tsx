@@ -21,8 +21,8 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-violet-500 rounded-xl flex items-center justify-center">
-                <img src="/logo.jpg" alt="Vybron Logo" className="w-6 h-6 rounded object-cover" />
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+                <img src="/logo only png.png" alt="Vybron Logo" className="w-6 h-6 object-contain" />
               </div>
               <span className="text-2xl font-bold">Vybron</span>
             </div>

@@ -15,13 +15,13 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/20" />
         
         {/* Floating bubbles */}
-        {[...Array(25)].map((_, i) => (
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute bg-white/8 rounded-full border border-white/15"
             style={{
-              width: `${3 + Math.random() * 6}px`,
-              height: `${3 + Math.random() * 6}px`,
+              width: `${1 + Math.random() * 2}px`,
+              height: `${1 + Math.random() * 2}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
@@ -40,13 +40,13 @@ const HeroSection = () => {
         ))}
         
         {/* Additional small circular bubbles */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(35)].map((_, i) => (
           <motion.div
             key={`small-bubble-${i}`}
             className="absolute rounded-full bg-white/5 border border-white/10"
             style={{
-              width: `${2 + Math.random() * 4}px`,
-              height: `${2 + Math.random() * 4}px`,
+              width: `${1 + Math.random() * 1.5}px`,
+              height: `${1 + Math.random() * 1.5}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
@@ -65,13 +65,13 @@ const HeroSection = () => {
         ))}
         
         {/* Large floating bubbles */}
-        {[...Array(15)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={`bubble-${i}`}
             className="absolute rounded-full bg-gradient-to-br from-blue-400/3 to-violet-400/3 border border-white/8"
             style={{
-              width: `${8 + Math.random() * 16}px`,
-              height: `${8 + Math.random() * 16}px`,
+              width: `${2 + Math.random() * 3}px`,
+              height: `${2 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
@@ -105,7 +105,7 @@ const HeroSection = () => {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
-            <div className="w-24 h-24 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center shadow-2xl border border-white/20">
+            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-2xl border border-white/20">
               <img src="/logo only png.png" alt="Vybron Logo" className="w-16 h-16 object-contain" />
             </div>
           </motion.div>

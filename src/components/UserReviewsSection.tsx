@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const UserReviewsSection = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const reviews = [
     {
       id: 1,
@@ -78,8 +82,8 @@ const UserReviewsSection = () => {
     }
   ];
 
-  // Duplicate reviews for seamless infinite scroll
-  const duplicatedReviews = [...reviews, ...reviews];
+  // Triple the reviews for seamless infinite scroll
+  const extendedReviews = [...reviews, ...reviews, ...reviews];
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -90,6 +94,18 @@ const UserReviewsSection = () => {
         }`}
       />
     ));
+  };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -111,26 +127,54 @@ const UserReviewsSection = () => {
         </motion.div>
       </div>
 
+      {/* Manual Scroll Controls */}
+      <div className="flex justify-center mb-8 space-x-4">
+        <Button
+          onClick={scrollLeft}
+          variant="outline"
+          size="icon"
+          className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white shadow-lg"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </Button>
+        <Button
+          onClick={() => setIsPaused(!isPaused)}
+          variant="outline"
+          className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white shadow-lg px-6"
+        >
+          {isPaused ? 'Resume' : 'Pause'}
+        </Button>
+        <Button
+          onClick={scrollRight}
+          variant="outline"
+          size="icon"
+          className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white shadow-lg"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </Button>
+      </div>
+
       {/* Sliding Reviews Container */}
       <div className="relative">
         <motion.div
-          className="flex space-x-6"
-          animate={{
-            x: [0, -100 * reviews.length * 24], // 24rem per card (w-96 = 24rem)
-          }}
+          ref={scrollRef}
+          className="flex space-x-6 overflow-hidden"
+          animate={!isPaused ? {
+            x: [0, -100 * reviews.length * 24], // Move by the width of original reviews
+          } : {}}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 80, // Much slower - doubled the duration
+              duration: 120, // Much slower - 2 minutes for full cycle
               ease: "linear",
             },
           }}
-          style={{ width: `${24 * duplicatedReviews.length}rem` }} // 24rem per card
+          style={{ width: `${24 * extendedReviews.length}rem` }}
         >
-          {duplicatedReviews.map((review, index) => (
+          {extendedReviews.map((review, index) => (
             <motion.div
-              key={`${review.id}-${index}`}
+              key={`${review.id}-${Math.floor(index / reviews.length)}`}
               className="flex-shrink-0 w-96"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3 }}
