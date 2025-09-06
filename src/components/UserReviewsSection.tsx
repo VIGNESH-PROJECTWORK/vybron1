@@ -116,22 +116,22 @@ const UserReviewsSection = () => {
         <motion.div
           className="flex space-x-6"
           animate={{
-            x: [`0%`, `-${100 * reviews.length}%`],
+            x: [0, -100 * reviews.length * 24], // 24rem per card (w-96 = 24rem)
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 40,
+              duration: 80, // Much slower - doubled the duration
               ease: "linear",
             },
           }}
-          style={{ width: `${100 * duplicatedReviews.length}px` }}
+          style={{ width: `${24 * duplicatedReviews.length}rem` }} // 24rem per card
         >
           {duplicatedReviews.map((review, index) => (
             <motion.div
               key={`${review.id}-${index}`}
-              className="flex-shrink-0 w-96 mx-3"
+              className="flex-shrink-0 w-96"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3 }}
             >
