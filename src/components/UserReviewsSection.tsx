@@ -116,17 +116,17 @@ const UserReviewsSection = () => {
         <motion.div
           className="flex space-x-6"
           animate={{
-            x: [0, -100 * reviews.length + '%'],
+            x: [`0%`, `-${100 * reviews.length}%`],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30,
+              duration: 40,
               ease: "linear",
             },
           }}
-          style={{ width: `${200 * reviews.length}%` }}
+          style={{ width: `${100 * duplicatedReviews.length}px` }}
         >
           {duplicatedReviews.map((review, index) => (
             <motion.div

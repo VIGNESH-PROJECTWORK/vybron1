@@ -78,8 +78,8 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg flex items-center justify-center">
-              <img src="/logo.jpg" alt="Vybron Logo" className="w-6 h-6 rounded object-cover" />
+            <div className="w-8 h-8 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center border border-white/20">
+              <img src="/logo only png.png" alt="Vybron Logo" className="w-6 h-6 object-contain" />
             </div>
             <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
               Vybron
